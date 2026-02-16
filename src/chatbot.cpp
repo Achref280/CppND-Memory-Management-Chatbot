@@ -92,21 +92,19 @@ ChatBot &ChatBot::operator=(const ChatBot &other) {
     return *this;
 }
 // Moving Constructor
-ChatBot::ChatBot(ChatBot &&other){
+ChatBot::ChatBot(ChatBot &&other) noexcept
+    : _image(other._image),
+      _currentNode(other._currentNode),
+      _rootNode(other._rootNode),
+      _chatLogic(other._chatLogic)
+{
     std::cout << "ChatBot Move Constructor" << std::endl;
-    _chatLogic = other._chatLogic;
-    _rootNode = other._rootNode;
-    _currentNode = other._currentNode;
-    // load image into heap memory
-
-    _image = other._image;
-    other._chatLogic = nullptr;
-    other._rootNode = nullptr;
-    other._currentNode = nullptr;
+    
+    // Only nullify the owned resource (the image)
     other._image = NULL;
 }
 // Moving Assignment Operator
-ChatBot &ChatBot::operator=(ChatBot &&other){
+ChatBot &ChatBot::operator=(ChatBot &&other) noexcept {
     std::cout << "ChatBot Move Assignment Operator" << std::endl;
     if (this == &other)
         return *this;
@@ -116,15 +114,13 @@ ChatBot &ChatBot::operator=(ChatBot &&other){
         delete _image;
     }
 
+    // Transfer all members
     _chatLogic = other._chatLogic;
     _rootNode = other._rootNode;
     _currentNode = other._currentNode;
-
-    // Transfer ownership of image
     _image = other._image;
-    other._chatLogic = nullptr;
-    other._rootNode = nullptr;
-    other._currentNode = nullptr;
+
+    // Only nullify the owned resource (the image)
     other._image = NULL;
 
     return *this;

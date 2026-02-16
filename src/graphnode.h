@@ -17,7 +17,7 @@ private:
 
     // data handles (owned)
     std::vector<std::unique_ptr<GraphEdge>> _childEdges;  // edges to subsequent nodes
-    std::unique_ptr<ChatBot> _chatBot;
+    ChatBot _chatBot; // chatbot instance (only one chatbot in the game)
     // data handles (not owned)
     std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes 
 
@@ -39,7 +39,7 @@ public:
     GraphEdge *GetChildEdgeAtIndex(int index);
     std::vector<std::string> GetAnswers() { return _answers; }
     int GetNumberOfParents() { return _parentEdges.size(); }
-    ChatBot *GetChatBot() { return _chatBot.get(); }
+    ChatBot *GetChatBot() { return &_chatBot; }
 
     // proprietary functions
     void AddToken(std::string token); // add answers to list

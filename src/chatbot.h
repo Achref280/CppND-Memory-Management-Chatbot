@@ -28,9 +28,9 @@ public:
     ChatBot(std::string filename); // constructor WITH memory allocation
     ~ChatBot();
     ChatBot(const ChatBot  &other);
-    ChatBot(ChatBot &&other);
+    ChatBot(ChatBot &&other) noexcept;
     ChatBot &operator=(const ChatBot &source);
-    ChatBot &operator=(ChatBot &&other);
+    ChatBot &operator=(ChatBot &&other) noexcept;
 
 
     //// STUDENT CODE

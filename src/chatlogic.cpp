@@ -220,8 +220,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         chatbotLoc.SetChatLogicHandle(this);
         chatbotLoc.SetRootNode(rootNode);
         rootNode->MoveChatbotHere(std::move(chatbotLoc));
-        SetChatbotHandle(rootNode->GetChatBot());
-        rootNode->GetChatBot()->SetCurrentNode(rootNode);
+        _chatBot = rootNode->GetChatBot();
+        _chatBot->SetCurrentNode(rootNode);
     }
     else
     {
