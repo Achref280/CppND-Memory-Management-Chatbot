@@ -3,6 +3,7 @@
 
 #include <wx/bitmap.h>
 #include <string>
+#include <iostream>
 
 class GraphNode; // forward declaration
 class ChatLogic; // forward declaration
@@ -26,6 +27,11 @@ public:
     ChatBot();                     // constructor WITHOUT memory allocation
     ChatBot(std::string filename); // constructor WITH memory allocation
     ~ChatBot();
+    ChatBot(const ChatBot  &other);
+    ChatBot(ChatBot &&other);
+    ChatBot &operator=(const ChatBot &source);
+    ChatBot &operator=(ChatBot &&other);
+
 
     //// STUDENT CODE
     ////
@@ -38,7 +44,13 @@ public:
     void SetRootNode(GraphNode *rootNode) { _rootNode = rootNode; }
     void SetChatLogicHandle(ChatLogic *chatLogic) { _chatLogic = chatLogic; }
     ChatLogic* GetChatLogicHandle() { return _chatLogic; }
-    wxBitmap *GetImageHandle() { return _image; }
+    wxBitmap *GetImageHandle() { 
+        if (_image == NULL) {
+            std::cout << "WARNING: GetImageHandle called but _image is NULL" << std::endl;
+            return NULL;
+        }
+        return _image; 
+    }
 
     // communication
     void ReceiveMessageFromUser(std::string message);
