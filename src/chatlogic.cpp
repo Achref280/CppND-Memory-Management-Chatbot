@@ -14,38 +14,12 @@
 
 ChatLogic::ChatLogic()
 {
-    //// STUDENT CODE
-    ////
-    std::cout << "ChagLogic constructor" << std::endl;
 
-    // initialize current node
-    _currentNode = nullptr;
-    // _chatBot will be initialized in LoadAnswerGraphFromFile
-
-    ////
-    //// EOF STUDENT CODE
 }
 
 ChatLogic::~ChatLogic()
 {
-    std::cout << "ChatLogic Destructor" << std::endl;
-    //// STUDENT CODE
-    ////
 
-    // delete chatbot instance
-    //delete _chatBot;
-
-    // delete all nodes -> not needed anymore due to use of smart pointers
-
-
-    // delete all edges
-    /*for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        delete *it;
-    }*/
-
-    ////
-    //// EOF STUDENT CODE
 }
 
 template <typename T>
@@ -72,7 +46,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 {
     // load file with answer graph elements
     std::ifstream file(filename);
-    std::cout << "LoadAnswerGraphFromFile started" << std::endl;
 
     // check for file availability and process it line by line
     if (file)
@@ -220,14 +193,11 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         chatbotLoc.SetChatLogicHandle(this);
         chatbotLoc.SetRootNode(rootNode);
         rootNode->MoveChatbotHere(std::move(chatbotLoc));
-        _chatBot = rootNode->GetChatBot();
-        _chatBot->SetCurrentNode(rootNode);
     }
     else
     {
         std::cout << "ERROR : No root node detected" << std::endl;
     }
-    std::cout << "LoadAnswerGraphFromFile terminated" << std::endl;
 
     ////
     //// EOF STUDENT CODE
