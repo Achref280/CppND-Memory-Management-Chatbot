@@ -15,19 +15,19 @@ private:
     //// STUDENT CODE
     ////
 
-    // data handles (owned)
-    std::vector<std::unique_ptr<GraphEdge>> _childEdges;  // edges to subsequent nodes
-    ChatBot _chatBot; // chatbot instance (only one chatbot in the game)
     // data handles (not owned)
     std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes 
-
+    
     ////
-    //// EOF STUDENT CODE
-
+    // data handles (owned)
+    ChatBot _chatBot; // chatbot instance (only one chatbot in the game)
+    
     // proprietary members
+    std::vector<std::unique_ptr<GraphEdge>> _childEdges;  // edges to subsequent nodes
     int _id;
     std::vector<std::string> _answers;
-
+    //// EOF STUDENT CODE
+    
 public:
     // constructor / destructor
     GraphNode(int id);
@@ -49,7 +49,7 @@ public:
     //// STUDENT CODE
     ////
 
-    void MoveChatbotHere(ChatBot &&chatbot);
+    void MoveChatbotHere(ChatBot chatbot);
 
     ////
     //// EOF STUDENT CODE

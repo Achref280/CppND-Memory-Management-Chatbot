@@ -50,6 +50,7 @@ ChatBot::ChatBot(const ChatBot &other)
 {
     std::cout << "ChatBot Copy Constructor" << std::endl;
     _chatLogic = other._chatLogic;
+    _chatLogic->SetChatbotHandle(this); // Update the ChatLogic's pointer to this new ChatBot instance
     _rootNode = other._rootNode;
     _currentNode = other._currentNode;
     // load image into heap memory
@@ -70,6 +71,7 @@ ChatBot &ChatBot::operator=(const ChatBot &other) {
         return *this;
 
     _chatLogic = other._chatLogic;
+    _chatLogic->SetChatbotHandle(this); // Update the ChatLogic's pointer to this new ChatBot instance
     _rootNode = other._rootNode;
     _currentNode = other._currentNode;
 
@@ -99,7 +101,7 @@ ChatBot::ChatBot(ChatBot &&other) noexcept
       _chatLogic(other._chatLogic)
 {
     std::cout << "ChatBot Move Constructor" << std::endl;
-    
+    _chatLogic->SetChatbotHandle(this); // Update the ChatLogic's pointer to this new ChatBot instance
     // Only nullify the owned resource (the image)
     other._image = NULL;
 }
@@ -115,7 +117,9 @@ ChatBot &ChatBot::operator=(ChatBot &&other) noexcept {
     }
 
     // Transfer all members
+
     _chatLogic = other._chatLogic;
+    _chatLogic->SetChatbotHandle(this); // Update the ChatLogic's pointer to this new ChatBot instance
     _rootNode = other._rootNode;
     _currentNode = other._currentNode;
     _image = other._image;
