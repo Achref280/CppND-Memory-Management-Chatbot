@@ -21,7 +21,7 @@ ChatBot::ChatBot()
 // constructor WITH memory allocation
 ChatBot::ChatBot(std::string filename)
 {
-    std::cout << "ChatBot Constructor" << std::endl;
+std::cout << "ChatBot Constructor" << std::endl;
     
     // invalidate data handles
     _currentNode = nullptr;
@@ -178,11 +178,7 @@ void ChatBot::SetCurrentNode(GraphNode *node)
     std::string answer = answers.at(dis(generator));
 
     // send selected node answer to user
-    std::cout << "SendMessageToUser started" << std::endl;
-    std::cout << "ChatBot pointer: " << this << std::endl;
-    std::cout << "ChatBot _image pointer: " << _image << std::endl;
-
-    _chatLogic->SendMessageToUser(answer);
+        _chatLogic->SendMessageToUser(answer);
 }
 
 int ChatBot::ComputeLevenshteinDistance(std::string s1, std::string s2)

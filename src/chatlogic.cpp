@@ -46,7 +46,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 {
     // load file with answer graph elements
     std::ifstream file(filename);
-    std::cout << "LoadAnswerGraphFromFile started" << std::endl;
 
     // check for file availability and process it line by line
     if (file)
@@ -199,7 +198,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     {
         std::cout << "ERROR : No root node detected" << std::endl;
     }
-    std::cout << "LoadAnswerGraphFromFile terminated" << std::endl;
 
     ////
     //// EOF STUDENT CODE
